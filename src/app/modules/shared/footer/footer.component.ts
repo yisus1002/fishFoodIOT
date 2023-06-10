@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
+  public anio:any;
+  constructor() {
+
+    const today= new Date();
+    this.anio= today.getFullYear()
+  }
 
 }

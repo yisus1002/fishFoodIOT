@@ -5,12 +5,14 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { MaterialModule } from './material/material.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoadingComponent } from './loading/loading.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { FooterComponent } from './footer/footer.component';
   exports: [
     MaterialModule,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    LoadingComponent
   ]
 })
 export class SharedModule { }

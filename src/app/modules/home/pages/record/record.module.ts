@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LandingRoutingModule } from './landing-routing.module';
+import { RecordRoutingModule } from './record-routing.module';
 import { ContentComponent } from './content/content.component';
-import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { HomeComponent } from './pages/home/home.component';
 
 
 @NgModule({
@@ -14,8 +14,8 @@ import { SharedModule } from 'src/app/modules/shared/shared.module';
   ],
   imports: [
     CommonModule,
-    LandingRoutingModule,
+    RecordRoutingModule,
     SharedModule
   ]
 })
-export class LandingModule { }
+export class RecordModule { }
