@@ -1,10 +1,13 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+// import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+const lang = 'en-US';
 @NgModule({
   declarations: [
     AppComponent
@@ -12,9 +15,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 2500,
+      progressBar: true,
+      enableHtml: true,
+    }),
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: lang }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,6 +5,7 @@ import { LandingRoutingModule } from './landing-routing.module';
 import { ContentComponent } from './content/content.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 
 @NgModule({

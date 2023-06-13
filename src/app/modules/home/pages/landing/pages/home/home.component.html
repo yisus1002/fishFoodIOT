@@ -1,1 +1,139 @@
-inicio
+<div class="container-fluid pt-2 px-0 control">
+  <section class="container control__container">
+      <div class="shadow rounded-4 mb-3 control__container__cont">
+        <h1  class="text-center bold pt-3 control__container__cont__title">Panel de control <strong>TimbreConnect</strong></h1>
+        <h2 style="font-size: 16px; " class="text-center m-0 pt-3">Programación del timbre de lunes a viernes</h2>
+        <div class="" *ngIf="loading!; else elseblock">
+          <div
+          class="d-flex  px-2 d-flex flex-wrap justify-content-between" style="align-items: center;">
+            <div *ngIf="!editar" class="control__cont__btn">
+              <button mat-raised-button *ngIf="!activar" type="button" class="control__cont__btn__1 " (click)="tocarTimbre()" >
+                Tocar timbre
+              </button>
+              <button mat-raised-button type="button" class="control__cont__btn__2 " (click)="cambiarEstado()">
+                <span *ngIf="!activar">Desactivar timbre</span>
+                <span *ngIf="activar">Activar timbre</span>
+              </button>
+            </div>
+
+            <div class="d-flex my-1" style="justify-content: space-between;">
+              <!-- *ngxPermissionsOnly="['ADMIN']" class="" -->
+              <div >
+              <button  type="button"
+              mat-mini-fab
+                (click)="editar=true"
+                *ngIf="editar===false"
+                class="btn btn-sm  btn-editar scale-in-center">
+                <svg style="width:24px;height:24px; color: rgb(255, 255, 255);" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+                </svg>
+              </button>
+              </div>
+
+              <button  *ngIf="editar"
+              mat-raised-button
+              (click)="enviar()"
+              type="submit"
+              class="btn btn-sm text-center mx-3 px-1 pt-0 my-0 rounded-4 text-wrap control__cont__btn__2">
+              Guardar
+              </button>
+              <button type="button"
+              mat-raised-button
+                (click)="cancel()"
+                *ngIf="editar" class="btn btn-sm text-center mx-3 px-1 pt-0 my-0 rounded-4 text-wrap control__cont__btn__1" mat-button >Cancelar</button>
+            </div>
+          </div>
+          <div
+              class="col-12 colsm-10 col-md-9 mt-2" style="margin: 0 auto;">
+              <!-- <h3 class="text-center">Programación del timbre</h3> -->
+  <hr>
+              <form *ngIf="editar"
+                    [formGroup]="formu"
+                    class="table-responsive">
+                <table class="table table-bordered" >
+                  <thead class="table-dark">
+                    <tr>
+                        <th >Hora</th>
+                        <th >Tipo </th>
+                        <th >Sonara </th>
+                        <th >Opciones</th>
+                      </tr>
+                    </thead>
+                    <tbody formArrayName="horario">
+                      <tr *ngFor="let item of getCtrl('horario', formu)?.controls; index as indexFormChildPrice"
+                      [formGroupName]="indexFormChildPrice"
+                      >
+                      <td align="center" class="p-1">
+                            <ngx-timepicker-field [format]="24" [defaultTime]="'00:00'" formControlName="start_time" ></ngx-timepicker-field>
+                            <mat-error *ngIf="item.get('start_time')?.errors">
+                            * Invalido
+                            </mat-error>
+                        </td>
+                        <td align="center" class="p-1">
+                          <mat-form-field  class="example-full-width" appearance="fill">
+                            <mat-label>Seleccione un tipo</mat-label>
+                            <mat-select style="position: relative;" formControlName="tipo" name="tipo">
+                              <mat-option  z-index="1056" *ngFor="let timbre of tipo " [value]="timbre?.cod">
+                                {{timbre?.cod}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td align="center">
+                          <mat-form-field class="example-form-field" appearance="fill">
+                            <mat-label>¿Cuántas veces sonará?</mat-label>
+                            <mat-select style="position: relative;" formControlName="sonara" name="sonara">
+                              <mat-option  z-index="1056" *ngFor="let sonara of sonara " [value]="sonara?.cod">
+                                {{sonara?.cod}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+
+                        </td>
+                        <td class="p-1" align="center">
+                          <button (click)="delHora(indexFormChildPrice)" type="button" mat-mini-fab ><mat-icon class="text-danger">delete</mat-icon></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="d-grid p-0 my-0 " style="width: 100%!important;">
+                    <button
+                        (click)="addHora()"
+                        type="button" mat-button class="btn mb-2"  style="background-color: rgb(0, 255, 238);"
+                        type="button" >
+                        <i class="fa-solid fa-plus"></i> Agregar hora
+                    </button>
+                  </div>
+              </form>
+              <div *ngIf="!editar" class="table-responsive px-2 pb-4">
+                <table class="table table-bordered" style="width: 70%; margin: auto;;">
+                  <thead class="table-dark">
+                    <tr >
+                        <th >Hora</th>
+                        <th >tipo</th>
+                        <th >Sonará</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of horari">
+                        <td class="p-1 px-2">{{item?.start_time}}
+                        </td>
+                        <td class="p-1 px-2">{{item?.tipo}}
+                        </td>
+                        <td>{{item?.sonara}}
+                          <span *ngIf="item.sonara===1" >vez</span>
+                          <span *ngIf="item.sonara>1" >veces</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+          </div>
+        </div>
+        <ng-template #elseblock>
+          <app-loading></app-loading>
+        </ng-template>
+
+     </div>
+  </section>
+</div>
