@@ -44,24 +44,42 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.createform();
   }
-  showCustomNotification() {
-    const customNotification = `
-      <div class="custom-notification">
-        <h3>Título de la notificación</h3>
-        <p>Contenido HTML personalizado aquí</p>
-      </div>
-    `;
-    this.toastr.info(customNotification, 'Notificación personalizada', {
-      enableHtml: true,
-      messageClass: 'toast-custom-class',
-      positionClass: 'toast-center',
-      timeOut: 5000,
-    });
-  }
+  // showCustomNotification() {
+  //   const customNotification = `
+  //     <div class="custom-notification">
+  //       <h3>Título de la notificación</h3>
+  //       <p>Contenido HTML personalizado aquí</p>
+  //     </div>
+  //   `;
+  //   this.toastr.info(customNotification, 'Notificación personalizada', {
+  //     enableHtml: true,
+  //     messageClass: 'toast-custom-class',
+  //     positionClass: 'toast-center',
+  //     timeOut: 5000,
+  //   });
+  // }
 
   tocarTimbre(){
     this.tocar=true;
     this.putHorario(1,{tocar: true});
+    if(this.tocar){
+      console.log('Timbre tocado');
+Swal.fire({
+  title: 'Tocando timbre!',
+  icon: 'success',
+  // html: '<ng-container style="margin:0;"><i class="fa-solid fa-stopwatch fa-shake" style="font-size: 50px; color: rgb(255, 0, 0);"></i></ng-container>',
+  timer: 5000,
+  heightAuto:true,
+  timerProgressBar: true,
+  showConfirmButton: false,
+  showCancelButton: false,
+  backdrop:true,
+  allowOutsideClick: false,
+  allowEscapeKey: false,
+  allowEnterKey: false,
+
+})
+    }
     // this.toastr.success("hola")
     // this.showCustomNotification()
   }
@@ -75,15 +93,38 @@ export class HomeComponent implements OnInit {
 
     let sihayrepetidos:boolean=false;
     let verifica:any[]= this.formu.value?.horario?.map((ele:any)=>ele?.start_time);
-    verifica.forEach( ele=>{
+    console.log(verifica);
+
+    verifica.forEach( (ele)=>{
       const cont = verifica.filter((x)=> x === ele);
-      return sihayrepetidos = (cont.length > 1);
+      if(cont.length > 1){
+        sihayrepetidos=true;
+        return ;
+      }
     });
     if(sihayrepetidos){
-      // this._sCtr.showToastr_error('Hay horas repetidas')
-      console.log("{si hay}");
-
+      this.toastr.error('Hay horas repetidas');
       return;
+    }
+    if(this.formu.invalid){
+      return Object.values(this.formu.controls).forEach(controls=>{
+        if(controls instanceof FormGroup){
+          Object.values(controls.controls).forEach(controls=>controls.markAllAsTouched())
+        }else{
+          controls.markAllAsTouched();
+        }
+      });
+    }else{
+      this.editar=false;
+      let hora:any[]=this.formu.value?.horario;
+      hora.sort((a:any, b:any) => a.start_time.localeCompare(b.start_time));
+      let horario ={
+        schedules:hora
+      }
+      // console.log(horario);
+      this.putHorario(1, horario);
+      // this.putH(this.scheduleId, horario);
+      this.toastr.success('Horario actualizado')
     }
 
   }
@@ -106,25 +147,7 @@ export class HomeComponent implements OnInit {
     this._sHorario.putHorario(id, horario)
     .pipe(
       finalize(()=>{
-        if(this.tocar){
-          console.log('Timbre tocado');
-    Swal.fire({
-      title: 'Tocando timbre!',
-      icon: 'success',
-      // html: '<ng-container style="margin:0;"><i class="fa-solid fa-stopwatch fa-shake" style="font-size: 50px; color: rgb(255, 0, 0);"></i></ng-container>',
-      timer: 5000,
-      heightAuto:true,
-      timerProgressBar: true,
-      showConfirmButton: false,
-      showCancelButton: false,
-      backdrop:true,
-      allowOutsideClick: false,
-      allowEscapeKey: false,
-      allowEnterKey: false,
 
-    })
-    this.tocar=false;
-        }
       })
     )
     .subscribe({
