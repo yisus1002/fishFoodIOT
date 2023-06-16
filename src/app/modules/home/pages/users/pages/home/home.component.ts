@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router} from '@angular/router';
+import { Users } from 'src/app/models/user-response';
+import { ControllerService } from 'src/app/services/controllers/controller.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -6,23 +12,53 @@ import { UsersService } from 'src/app/services/users.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit  {
 
+  // public dataSource:any[]=[];
+  public displayedColumns:string[]=[
+    'name',
+    'lastName',
+    'email',
+    'rol',
+    'password',
+    'Opciones'
+  ];
+  // public rol:any[]=[
+  //   {role:'USER'},
+  //   {role:'ADMIN'},
+  // ];
+  // public eliminar:any;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  // public dataSource= new MatTableDataSource<Users>();
 
-  constructor(private _sUsers:UsersService){
+  constructor(
+    private _sUsers:UsersService,
+    private router: Router,
+    public _sctr: ControllerService,
+    ){
+  }
+  ngAfterViewInit(): void {
+    this._sctr.dataSource.paginator = this.paginator;
+    this._sctr.dataSource.sort = this.sort;
   }
 
   ngOnInit(): void {
+    this._sctr.createForm();
+    this._sctr.loadForm(this._sctr.usuario);
+    this._sctr.leerToken();
     this.getUsers();
   }
 
   getUsers(){
-    this._sUsers.getUsers().subscribe({
+    this._sUsers.getUsers()
+    .pipe()
+    .subscribe({
       next: (data)=>{
         console.log(data);
-
+        this._sctr.dataSource.data= data
       },
-      error: ()=>{
+      error: (eer:any)=>{
 
       },
       complete: ()=>{
@@ -30,5 +66,22 @@ export class HomeComponent implements OnInit {
       }
     })
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    console.log(filterValue);
+
+    this._sctr.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this._sctr.dataSource.paginator) {
+      this._sctr.dataSource.paginator.firstPage();
+    }
+  }
+  // editar(dato:any){
+
+  // }
+  // eliminar(data:any){
+
+  // }
 
 }

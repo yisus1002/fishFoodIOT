@@ -47,7 +47,7 @@
               class="col-12 colsm-10 col-md-9 mt-2" style="margin: 0 auto;">
               <!-- <h3 class="text-center">Programación del timbre</h3> -->
   <hr>
-              <form *ngIf="editar"
+              <form *ngIf="editar; else edit"
                     [formGroup]="formu"
                     class="table-responsive">
                 <table class="table table-bordered" >
@@ -91,7 +91,7 @@
 
                         </td>
                         <td class="p-1" align="center">
-                          <button (click)="delHora(indexFormChildPrice)" type="button" mat-mini-fab ><mat-icon class="text-danger">delete</mat-icon></button>
+                          <button (click)="delHora(indexFormChildPrice)" type="button" mat-mini-fab class="btn__delete" ><mat-icon >delete</mat-icon></button>
                         </td>
                       </tr>
                     </tbody>
@@ -105,29 +105,34 @@
                     </button>
                   </div>
               </form>
-              <div *ngIf="!editar" class="table-responsive px-2 pb-4">
-                <table class="table table-bordered" style="width: 70%; margin: auto;;">
-                  <thead class="table-dark">
-                    <tr >
-                        <th >Hora</th>
-                        <th >tipo</th>
-                        <th >Sonará</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let item of horari">
-                        <td class="p-1 px-2">{{item?.start_time}}
-                        </td>
-                        <td class="p-1 px-2">{{item?.tipo}}
-                        </td>
-                        <td>{{item?.sonara}}
-                          <span *ngIf="item.sonara===1" >vez</span>
-                          <span *ngIf="item.sonara>1" >veces</span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-              </div>
+
+              <ng-template #edit>
+                <app-table [schedule]="horari"></app-table>
+                <!-- <div  class="table-responsive px-2 pb-4">
+                  <table class="table table-bordered" style="width: 70%; margin: auto;;">
+                    <thead class="table-dark">
+                      <tr >
+                          <th >Hora</th>
+                          <th >tipo</th>
+                          <th >Sonará</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of horari">
+                          <td class="p-1 px-2">{{item?.start_time}}
+                          </td>
+                          <td class="p-1 px-2">{{item?.tipo}}
+                          </td>
+                          <td>{{item?.sonara}}
+                            <span *ngIf="item.sonara===1" >vez</span>
+                            <span *ngIf="item.sonara>1" >veces</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div> -->
+              </ng-template>
+
           </div>
         </div>
         <ng-template #elseblock>

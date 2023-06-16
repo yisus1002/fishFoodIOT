@@ -1,1 +1,28 @@
-<p>record works!</p>
+<section class="container p-2">
+  <h1>Registro</h1>
+  <hr>
+  <mat-accordion *ngIf="record.length>0; else loading" >
+
+    <mat-expansion-panel *ngFor="let record of record" (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{record?.name}}  {{record?.lastname}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{record?.update_date}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="">
+        <h2 class="text-center">Horario</h2>
+      <app-table [schedule]="record['schedules']"></app-table>
+      </div>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+  <ng-template #loading>
+    <app-loading></app-loading>
+  </ng-template>
+
+
+</section>

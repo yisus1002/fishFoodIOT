@@ -26,13 +26,15 @@ export class UsersService {
     return this.http.get<any>(`${this.api}/users/${id}.json`);
   }
 
-  putUsers(user:Users):Observable<Users>{
+  putUsers(id:any,user:Users):Observable<Users>{
 
     const userTmp={
       ...user
     }
     delete userTmp?.id;
-    return this.http.put<any>(`${this.api}/users/${user?.id}.json`,userTmp)
+    console.log(user.id);
+
+    return this.http.put<any>(`${this.api}/users/${id}.json`,userTmp)
   }
 
   postUser(user:Users):Observable<Users>{

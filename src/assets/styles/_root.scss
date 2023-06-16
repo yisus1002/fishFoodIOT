@@ -51,7 +51,18 @@ body{
   top: 12px;
   right: 12px;
 }
-
+.modal-backdrop {
+  --bs-backdrop-bg: rgba(136, 29, 29, 0);
+  --bs-backdrop-opacity: 1!important;
+  z-index: -2!important;
+  opacity: 1!important;
+}
+mat-form-field{
+  margin: 2px;
+}
+.modal{
+  z-index: 0!important;
+}
 .scale-in-center {
 	-webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	        animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;

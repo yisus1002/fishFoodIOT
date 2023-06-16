@@ -8,6 +8,8 @@ import { FooterComponent } from './footer/footer.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { FormComponent } from './form/form.component';
+import { TableComponent } from './table/table.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 
@@ -15,7 +17,9 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
   declarations: [
     NavbarComponent,
     FooterComponent,
-    LoadingComponent
+    LoadingComponent,
+    FormComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
@@ -26,10 +30,12 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
   ],
   exports: [
-    MaterialModule,
     NavbarComponent,
     FooterComponent,
     LoadingComponent,
+    FormComponent,
+    TableComponent,
+    MaterialModule,
     ReactiveFormsModule,
     NgxMaterialTimepickerModule,
 

@@ -24,6 +24,10 @@
     background-color: variables.color(green) !important;
   }
 }
+button.btn__delete{
+  background-color: variables.color(white);
+  color: variables.color(orange-dark);
+}
 
 .bg-danger{
   background-color: rgb(255, 0, 85)!important;
