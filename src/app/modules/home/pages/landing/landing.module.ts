@@ -6,6 +6,7 @@ import { ContentComponent } from './content/content.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
   imports: [
     CommonModule,
     LandingRoutingModule,
-    SharedModule
+    SharedModule,
+    NgxPermissionsModule.forChild(),
   ]
 })
 export class LandingModule { }

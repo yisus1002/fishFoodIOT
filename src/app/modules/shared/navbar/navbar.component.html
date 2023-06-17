@@ -25,13 +25,13 @@
           <a class="nav-link" data-bs-toggle="collapse"
           data-bs-target="#navbarNav"   routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" aria-current="page" [routerLink]="['/home']" >Inicio</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngxPermissionsOnly="['ADMIN']">
           <a class="nav-link" data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"   routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" aria-current="page" [routerLink]="['/home/users']">Administrar usuarios</a>
+          data-bs-target="#navbarNav"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" aria-current="page" [routerLink]="['/home/users']">Administrar usuarios</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngxPermissionsOnly="['ADMIN']" >
           <a class="nav-link" data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"   routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" aria-current="page" [routerLink]="['/home/record']">Registro</a>
+          data-bs-target="#navbarNav"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" aria-current="page" [routerLink]="['/home/record']">Registro</a>
         </li>
       </ul>
     </div>

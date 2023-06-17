@@ -1,0 +1,15 @@
+@use '../../../../../../../assets/styles/variables';
+
+h1 , h2 , h3 , h4 , h5 , h6{
+  color: variables.color(yellow);
+}
+.cont__perfil{
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+.cont__img{
+  display: flex;
+  justify-content: center;
+}

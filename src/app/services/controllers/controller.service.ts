@@ -9,6 +9,7 @@ import { finalize } from 'rxjs';
 import { Users } from 'src/app/models/user-response';
 import Swal from 'sweetalert2';
 import { UsersService } from '../users.service';
+import { NgxPermissionsService } from 'ngx-permissions';
 
 @Injectable({
   providedIn: 'root'
@@ -54,7 +55,7 @@ public rol:any[]=[
     private _sUser: UsersService,
     private toastr: ToastrService,
     private form: FormBuilder,
-    // private permissionsService: NgxPermissionsService,
+    private permissionsService: NgxPermissionsService,
     ) {
       this.verificarRuta()
     }
@@ -62,12 +63,12 @@ public rol:any[]=[
   }
 
   leerToken(){
-    // if(localStorage.getItem('token')){
-    //   this.token= localStorage.getItem('token');
-    // }else{
-    //   this.token='';
-    // }
-    // return this.token;
+    if(localStorage.getItem('token')){
+      this.token= localStorage.getItem('token');
+    }else{
+      this.token='';
+    }
+    return this.token;
   }
   // ----------------------------------------------------------------------
   public get emailNoValid(){   return this.formu.get('email')?.invalid    && this.formu.get('email')?.touched;};
@@ -200,19 +201,20 @@ public rol:any[]=[
   getUserId(){
     if(localStorage.getItem('id')){
       const id =localStorage.getItem('id');
+
       this._sUser.getUserId(id)
       .pipe( finalize(()=>{
       }))
       .subscribe({
         next:(data)=>{
           this.user=data;
-          // console.log(this.user);
-          // localStorage.setItem('role', this.user?.role);
+          console.log(this.user);
+          localStorage.setItem('role', this.user?.role);
           if(this.user?.role==='ADMIN'){
-            // this.permissionsService.loadPermissions([`${this.user?.role}`]);
+            this.permissionsService.loadPermissions([`${this.user?.role}`]);
           }else{
-            // this.permissionsService.loadPermissions([`${this.user?.role}`]);
-            // this.router.navigate(['/'])
+            this.permissionsService.loadPermissions([`${this.user?.role}`]);
+            this.router.navigate(['/home'])
           }
         },
         error: (error:any)=>{
@@ -224,7 +226,7 @@ public rol:any[]=[
         }
       })
     }else{
-
+this.router.navigate(['/login'])
     }
 
   }

@@ -5,6 +5,7 @@ import { Horario, Schedule } from '../../../../../../models/horario-response';
 import { finalize } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
+import { ControllerService } from '../../../../../../services/controllers/controller.service';
 
 @Component({
   selector: 'app-home',
@@ -36,13 +37,15 @@ export class HomeComponent implements OnInit {
 
   constructor(private _sHorario:TimbreService,
     private form     : FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private _sCtr: ControllerService
     ){
       this.getHorario()
   }
 
   ngOnInit(): void {
     this.createform();
+    this._sCtr.getUserId()
   }
   // showCustomNotification() {
   //   const customNotification = `
@@ -182,7 +185,7 @@ Swal.fire({
   }
   delHora(id:any){
     this.horario.removeAt(id);
-    this.formu.value?.horario.removeAt(id);
+    // this.formu.value?.horario.removeAt(id);
   }
   public getCtrl(key: string, form: FormGroup) {
     return  (<FormArray>form.get(key));

@@ -41,7 +41,8 @@
                      matInput type="email">
               <mat-error *ngIf="_sctr.emailNoValid">Este campo es invalido</mat-error>
             </mat-form-field>
-              <mat-form-field *ngIf="(_sctr.currentRoute==='/home/perfil' && _sctr.user?.role==='ADMIN') || _sctr.currentRoute==='/home/users'" class="example-full-width"appearance="fill">
+            <!-- *ngIf="(_sctr.currentRoute==='/home/profile' && _sctr.user?.role==='ADMIN') || _sctr.currentRoute==='/home/users'" -->
+              <mat-form-field  class="example-full-width"appearance="fill">
                 <mat-label>Seleccione un rol</mat-label>
                 <mat-select style="position: relative;" formControlName="role" name="catalog">
                   <mat-option  z-index="1056" *ngFor="let user of _sctr.rol" [value]="user?.role">

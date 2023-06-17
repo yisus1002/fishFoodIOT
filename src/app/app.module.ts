@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxPermissionsModule } from 'ngx-permissions';
 // import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 const lang = 'en-US';
 @NgModule({
@@ -17,6 +18,8 @@ const lang = 'en-US';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    // NgxPermissionsModule.forChild(),
+    NgxPermissionsModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 2500,
       progressBar: true,
@@ -24,6 +27,7 @@ const lang = 'en-US';
     }),
   ],
   providers: [{ provide: LOCALE_ID, useValue: lang }],
+  // schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+// import { MatTableDataSource } from '@angular/material/table';
 import { Router} from '@angular/router';
-import { Users } from 'src/app/models/user-response';
+// import { Users } from 'src/app/models/user-response';
 import { ControllerService } from 'src/app/services/controllers/controller.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit, AfterViewInit  {
     this._sctr.loadForm(this._sctr.usuario);
     this._sctr.leerToken();
     this.getUsers();
+    // this._sctr.getUserId();
   }
 
   getUsers(){

@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { FormComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';
+import { NgxPermissionsModule } from 'ngx-permissions';
 // import { ToastrModule } from 'ngx-toastr';
 
 
@@ -27,7 +28,7 @@ import { TableComponent } from './table/table.component';
     MaterialModule,
     ReactiveFormsModule,
     NgxMaterialTimepickerModule,
-
+    NgxPermissionsModule.forChild(),
   ],
   exports: [
     NavbarComponent,

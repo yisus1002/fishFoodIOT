@@ -1,0 +1,33 @@
+@use '../../../../../assets/styles/variables';
+.color{
+  color: variables.color(green);
+}
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+.btn-ingresar{
+  border: none!important;
+  transition: 300ms;
+  color: #ffff;
+  background-color: variables.color(green);
+}
+.img-thumbnail{
+  display: flex!important;
+  border: none!important;
+  border-radius: 100%!important;
+  overflow: hidden!important;
+  margin: (0 auto)!important;
+}
+.bg-login{
+  // background: rgb(214,107,174);
+  // background: radial-gradient(circle, variables.color(yellow) 0%, variables.color(green) 50%, variables.color(coffe-dark) 100%);
+}

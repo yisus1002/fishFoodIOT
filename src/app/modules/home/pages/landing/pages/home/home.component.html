@@ -18,7 +18,7 @@
 
             <div class="d-flex my-1" style="justify-content: space-between;">
               <!-- *ngxPermissionsOnly="['ADMIN']" class="" -->
-              <div >
+              <div *ngxPermissionsOnly="['ADMIN']">
               <button  type="button"
               mat-mini-fab
                 (click)="editar=true"

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { RecordRoutingModule } from './record-routing.module';
+import { ProfileRoutingModule } from './profile-routing.module';
 import { ContentComponent } from './content/content.component';
-import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { HomeComponent } from './pages/home/home.component';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { NgxPermissionsModule } from 'ngx-permissions';
 
 
@@ -15,9 +15,10 @@ import { NgxPermissionsModule } from 'ngx-permissions';
   ],
   imports: [
     CommonModule,
-    RecordRoutingModule,
+    ProfileRoutingModule,
     SharedModule,
+
     NgxPermissionsModule.forChild(),
   ]
 })
-export class RecordModule { }
+export class ProfileModule { }
