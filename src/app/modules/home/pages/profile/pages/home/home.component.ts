@@ -18,9 +18,16 @@ export class HomeComponent implements OnInit {
     }
     ngOnInit(): void {
     this._sctr.createForm();
-    // throw new Error('Method not implemented.');
+    // this._sctr.leerToken();
+    this._sctr.getUserId()
+
   }
 
+  eliminarcuenta(){
+    // console.log(this._sctr.user);
+
+    this._sctr.eliminar(this._sctr.user);
+  }
   getUsersid(id:any){
     this._sUser.getUserId(id)
     .subscribe({

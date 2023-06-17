@@ -1,36 +1,38 @@
 <section class="container p-2">
   <h1>Perfil</h1>
   <hr>
-  <div class="row">
+  <div class="row m-0">
     <div class="col-12 col-sm-4 col-md-3 cont__img">
       <div class="card border-0 shadow" style="width: 18rem;">
         <img src="assets/icons/logo_san_jose.png" class="card-img-top" alt="logo IE San Juan">
         <div class="card-body">
-          <p class="card-text text-center" style="font-weight: bolder;">
+          <p class="card-text text-center h5" style="font-weight: bolder;">
             I E San Juan
           </p>
         </div>
       </div>
     </div>
-    <div class="col-12 col-sm-7 col-md-8 cont__perfil m-3">
+    <div class="col-11 col-sm-7 col-md-8 cont__perfil my-3">
       <div class="row">
-        <div class="col-5 p-2">{{user?.name}}</div>
-        <div class="col-5 p-2">{{user?.lastname}}</div>
+        <div class="col-12  p-2"><p class="user__data"><strong class="color">Nombres:</strong> {{_sctr.user?.name}}</p></div>
+        <div class="col-12  p-2"><p class="user__data"><strong class="color">Apellidos:</strong> {{_sctr.user?.lastname}}</p></div>
       </div>
       <div class="row">
-        <div class="col-12">{{user?.email}}</div>
+        <div class="col-12 "><p class="user__data"><strong class="color">Email:</strong> {{_sctr.user?.email}}</p></div>
       </div>
       <div class="row">
-        <div class="col-5 p-2">{{user?.password}}</div>
-        <div class="col-5 p-2">{{user?.role}}</div>
+        <div class=" col-12 p-2"><p class="user__data"><strong class="color">Contraseña:</strong> {{_sctr.user?.password}}</p></div>
+        <div class=" col-12 p-2"><p class="user__data"><strong class="color">Rol:</strong> {{_sctr.user?.role}}</p></div>
       </div>
-      <div class="d-flex justify-content-evenly">
+      <div class="cont__btn ">
         <button type="button"
         data-bs-toggle="modal"
         data-bs-target="#ModalUser"
-        class="btn btn-primary ">Editar</button>
+        class="btn btn-primary"
+        (click)="_sctr.editar(_sctr.user)"
+        >Editar</button>
         <button type="button"
-        class="btn btn-danger">Eliminar cuenta</button>
+        class="btn btn-danger"  (click)="eliminarcuenta()">Eliminar cuenta</button>
       </div>
     </div>
 

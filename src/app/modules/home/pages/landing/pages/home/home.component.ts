@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.createform();
-    this._sCtr.getUserId()
+    // this._sCtr.getUserId()
   }
   // showCustomNotification() {
   //   const customNotification = `
@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
     this.tocar=true;
     this.putHorario(1,{tocar: true});
     if(this.tocar){
-      console.log('Timbre tocado');
+      // console.log('Timbre tocado');
 Swal.fire({
   title: 'Tocando timbre!',
   icon: 'success',
@@ -92,11 +92,11 @@ Swal.fire({
 
   }
   enviar(){
-    console.log(this.formu.value);
+    // console.log(this.formu.value);
 
     let sihayrepetidos:boolean=false;
     let verifica:any[]= this.formu.value?.horario?.map((ele:any)=>ele?.start_time);
-    console.log(verifica);
+    // console.log(verifica);
 
     verifica.forEach( (ele)=>{
       const cont = verifica.filter((x)=> x === ele);

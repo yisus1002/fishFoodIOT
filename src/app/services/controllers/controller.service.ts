@@ -207,8 +207,11 @@ public rol:any[]=[
       }))
       .subscribe({
         next:(data)=>{
-          this.user=data;
-          console.log(this.user);
+          this.user={
+            ...data,
+            id:id
+          };
+          // console.log(this.user);
           localStorage.setItem('role', this.user?.role);
           if(this.user?.role==='ADMIN'){
             this.permissionsService.loadPermissions([`${this.user?.role}`]);
@@ -236,7 +239,7 @@ this.router.navigate(['/login'])
     }))
     .subscribe({
       next:(data)=>{
-        console.log(data);
+        // console.log(data);
 
         this.dataSource.data=data;
       },
@@ -281,13 +284,16 @@ this.router.navigate(['/login'])
       this.loadForm(this.user)
       this.editarC=false;
       this.changeC=false;
+      // console.log(this.currentRoute);
+
       if(this.currentRoute==='/home/users'){
+
       this.getUsers()
       }
     }))
     .subscribe({
       next:(data)=>{
-        console.log(data);
+        // console.log(data);
 
         this.user={
           id:idTemp,
@@ -306,7 +312,14 @@ this.router.navigate(['/login'])
   }
   // ----------------------------------------------------------------------
   verificarRuta(){
-    this.currentRoute=this.router.url;;
+    this.router.events.subscribe((event: Event) => {
+
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+          // console.log(this.currentRoute);
+    }
+    });
+
   }
   // ----------------------------------------------------------------------
   showToastr_success(title: string) {
