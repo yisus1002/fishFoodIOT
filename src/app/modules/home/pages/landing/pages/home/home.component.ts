@@ -6,6 +6,8 @@ import { finalize } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
 import { ControllerService } from '../../../../../../services/controllers/controller.service';
+import { RecordService } from 'src/app/services/record.service';
+import { Record } from 'src/app/models/record-reponse';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +24,7 @@ export class HomeComponent implements OnInit {
 
   da:any[]=[];
   public horari!:Schedule[];
+  public record!:Record;
   public tipo:any[]=[
     {cod:"Cambio de clase"},
     {cod:"Entrada"},
@@ -38,40 +41,24 @@ export class HomeComponent implements OnInit {
   constructor(private _sHorario:TimbreService,
     private form     : FormBuilder,
     private toastr: ToastrService,
-    private _sCtr: ControllerService
+    private _sCtr: ControllerService,
+    private _srcor: RecordService
     ){
       this.getHorario()
   }
 
   ngOnInit(): void {
     this.createform();
-    // this._sCtr.getUserId()
   }
-  // showCustomNotification() {
-  //   const customNotification = `
-  //     <div class="custom-notification">
-  //       <h3>Título de la notificación</h3>
-  //       <p>Contenido HTML personalizado aquí</p>
-  //     </div>
-  //   `;
-  //   this.toastr.info(customNotification, 'Notificación personalizada', {
-  //     enableHtml: true,
-  //     messageClass: 'toast-custom-class',
-  //     positionClass: 'toast-center',
-  //     timeOut: 5000,
-  //   });
-  // }
 
   tocarTimbre(){
     this.tocar=true;
     this.putHorario(1,{tocar: true});
     if(this.tocar){
-      // console.log('Timbre tocado');
 Swal.fire({
   title: 'Tocando timbre!',
   icon: 'success',
-  // html: '<ng-container style="margin:0;"><i class="fa-solid fa-stopwatch fa-shake" style="font-size: 50px; color: rgb(255, 0, 0);"></i></ng-container>',
-  timer: 5000,
+   timer: 5000,
   heightAuto:true,
   timerProgressBar: true,
   showConfirmButton: false,
@@ -83,8 +70,7 @@ Swal.fire({
 
 })
     }
-    // this.toastr.success("hola")
-    // this.showCustomNotification()
+
   }
   cambiarEstado(){
     this.activar=!this.activar;
@@ -92,11 +78,9 @@ Swal.fire({
 
   }
   enviar(){
-    // console.log(this.formu.value);
 
     let sihayrepetidos:boolean=false;
     let verifica:any[]= this.formu.value?.horario?.map((ele:any)=>ele?.start_time);
-    // console.log(verifica);
 
     verifica.forEach( (ele)=>{
       const cont = verifica.filter((x)=> x === ele);
@@ -124,9 +108,10 @@ Swal.fire({
       let horario ={
         schedules:hora
       }
-      // console.log(horario);
       this.putHorario(1, horario);
-      // this.putH(this.scheduleId, horario);
+      setTimeout(() => {
+        this.postInforme(this.record)
+      }, 3000);
       this.toastr.success('Horario actualizado')
     }
 
@@ -155,9 +140,30 @@ Swal.fire({
     )
     .subscribe({
       next:(data)=>{
+        let fecha:Date = new Date();
+
+        this.record={
+          id:this._sCtr.user?.id,
+          email:this._sCtr.user?.email,
+          lastname:this._sCtr.user?.lastname,
+          name:this._sCtr.user?.name,
+          schedules:data?.schedules,
+          update_date:fecha.toLocaleDateString(),
+        }
         this.actualizarEstado(data);
       },
       error:()=>{
+
+      }
+    })
+  }
+  postInforme(recor:Record){
+    this._srcor.postrecord(recor)
+    .subscribe({
+      next:(data)=>{
+      },
+      error:(err)=>{
+        console.log(err);
 
       }
     })
@@ -166,7 +172,6 @@ Swal.fire({
     this.activar=data?.activo;
     this.horari=data?.schedules;
     this.loadForm(this.horari)
-    console.log(data);
 
   }
   get horario(){   return this.formu.get('horario') as FormArray};
@@ -185,7 +190,6 @@ Swal.fire({
   }
   delHora(id:any){
     this.horario.removeAt(id);
-    // this.formu.value?.horario.removeAt(id);
   }
   public getCtrl(key: string, form: FormGroup) {
     return  (<FormArray>form.get(key));

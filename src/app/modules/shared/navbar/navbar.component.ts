@@ -13,7 +13,6 @@ export class NavbarComponent implements OnInit {
   }
   ngOnInit(): void {
     this._Scrt.getUserId()
-    // throw new Error('Method not implemented.');
   }
 
 }

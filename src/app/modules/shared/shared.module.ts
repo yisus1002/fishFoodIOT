@@ -11,6 +11,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { FormComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { AvatarComponent } from './avatar/avatar.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 
@@ -20,7 +21,8 @@ import { NgxPermissionsModule } from 'ngx-permissions';
     FooterComponent,
     LoadingComponent,
     FormComponent,
-    TableComponent
+    TableComponent,
+    AvatarComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { NgxPermissionsModule } from 'ngx-permissions';
     LoadingComponent,
     FormComponent,
     TableComponent,
+    AvatarComponent,
     MaterialModule,
     ReactiveFormsModule,
     NgxMaterialTimepickerModule,

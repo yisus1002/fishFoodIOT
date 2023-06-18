@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit {
     }else{
       console.log(this.formu.value?.email);
       console.log(this.formu.value?.password);
-      // this.router.navigate(['/home'])
       this._sAuth.getToken(this.formu.value?.email, this.formu.value?.password);
     }
   }

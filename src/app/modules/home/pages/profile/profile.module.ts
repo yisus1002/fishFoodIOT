@@ -17,7 +17,6 @@ import { NgxPermissionsModule } from 'ngx-permissions';
     CommonModule,
     ProfileRoutingModule,
     SharedModule,
-
     NgxPermissionsModule.forChild(),
   ]
 })

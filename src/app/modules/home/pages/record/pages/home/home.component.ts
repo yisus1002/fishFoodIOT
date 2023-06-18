@@ -21,6 +21,13 @@ export class HomeComponent implements OnInit {
     this._Srecord.getrecord().subscribe({
       next: (data) => {
         this.record=data
+        if(this.record.length > 10){
+          const recor = this.record.slice(this.record.length - 10);
+          this.record=recor
+        }else{
+          this.record=data
+
+        }
             },
       error: (err) => {
               console.log(err);

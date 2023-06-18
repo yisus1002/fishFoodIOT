@@ -99,15 +99,12 @@ public rol:any[]=[
 
   // ----------------------------------------------------------------------
   enviar(){
-    // console.log(this.formu.valid);
-    // console.log(this.formu.value);
     if(this.formu.invalid){
 
       return Object.values(this.formu.controls).forEach(controls=>{
         controls.markAllAsTouched()
       })
     }else{
-      // console.log(this.formu.value);
 
       if(this.nameform==='Agregar'){
         this.postUser();
@@ -116,28 +113,6 @@ public rol:any[]=[
       }
     }
   }
-  // ----------------------------------------------------------------------
-  // cambiarContrasena(){
-  //   this.editarC=! this.editarC;
-  //   this.changeC=! this.changeC;
-  //   if(this.changeC===true){
-  //     this.formu=this.form.group({
-  //       ...this.formu.controls,
-  //       password: ["", [Validators.required, Validators.minLength(3)], []],
-  //     });
-  //     this.formu.reset({
-  //       ...this.formu.value,
-  //       password: '',
-  //     })
-  //   }else{
-  //     // this.formu.removeControl('password')
-  //     console.log(this.user);
-
-  //     this.loadForm(this.user)
-  //   }
-  // return  this.formu;
-  // }
-  // ----------------------------------------------------------------------
 
   agregar(){
     this.nameform="Agregar"
@@ -150,12 +125,8 @@ public rol:any[]=[
   }
   editar(user:Users){
 
-    // this.editarC=false;
     this.nameform="Editar";
-    // this.changeC=false;
     this.user=user
-    // console.log(user);
-    // this.formu.removeControl('password')
     this.loadForm(this.user)
   }
   eliminar(user:any){
@@ -211,13 +182,12 @@ public rol:any[]=[
             ...data,
             id:id
           };
-          // console.log(this.user);
           localStorage.setItem('role', this.user?.role);
           if(this.user?.role==='ADMIN'){
             this.permissionsService.loadPermissions([`${this.user?.role}`]);
           }else{
             this.permissionsService.loadPermissions([`${this.user?.role}`]);
-            this.router.navigate(['/home'])
+            // this.router.navigate(['/home'])
           }
         },
         error: (error:any)=>{
@@ -239,7 +209,6 @@ this.router.navigate(['/login'])
     }))
     .subscribe({
       next:(data)=>{
-        // console.log(data);
 
         this.dataSource.data=data;
       },
@@ -277,14 +246,12 @@ this.router.navigate(['/login'])
     })
   }
   putUser(){
-    // console.log(this.user);
     let idTemp:any= this.user.id;
     this._sUser.putUsers(this.user.id, this.formu.value)
     .pipe( finalize(()=>{
       this.loadForm(this.user)
       this.editarC=false;
       this.changeC=false;
-      // console.log(this.currentRoute);
 
       if(this.currentRoute==='/home/users'){
 
@@ -293,7 +260,6 @@ this.router.navigate(['/login'])
     }))
     .subscribe({
       next:(data)=>{
-        // console.log(data);
 
         this.user={
           id:idTemp,
@@ -316,7 +282,6 @@ this.router.navigate(['/login'])
 
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.url;
-          // console.log(this.currentRoute);
     }
     });
 

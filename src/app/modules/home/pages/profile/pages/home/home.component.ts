@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Users } from 'src/app/models/user-response';
 import { ControllerService } from 'src/app/services/controllers/controller.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -18,13 +17,11 @@ export class HomeComponent implements OnInit {
     }
     ngOnInit(): void {
     this._sctr.createForm();
-    // this._sctr.leerToken();
     this._sctr.getUserId()
 
   }
 
   eliminarcuenta(){
-    // console.log(this._sctr.user);
 
     this._sctr.eliminar(this._sctr.user);
   }

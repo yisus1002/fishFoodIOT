@@ -37,7 +37,7 @@
                       <path fill="currentColor" d="M2,21L23,12L2,3V10L17,12L2,14V21Z" />
                   </svg>
                   </span>
-                  <i *ngIf="_sAuth.habilitar" class="fa-2x fa-solid fa-spinner fa-spin-pulse fa-spin-reverse"></i>
+                  <mat-spinner *ngIf="_sAuth.habilitar" diameter="30"></mat-spinner>
               </button>
           </div>
       </form>
