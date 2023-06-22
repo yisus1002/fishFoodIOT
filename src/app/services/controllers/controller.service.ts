@@ -70,6 +70,21 @@ public rol:any[]=[
     }
     return this.token;
   }
+  leerRole(){
+    // console.log('dsd');
+
+    let role:any;
+    if(localStorage.getItem('role')){
+       role= localStorage.getItem('role');
+      //  console.log(role);
+       if(role=="USER"){
+        this.router.navigate(['/home']);
+       }
+    }else{
+      role='';
+    }
+    return role;
+  }
   // ----------------------------------------------------------------------
   public get emailNoValid(){   return this.formu.get('email')?.invalid    && this.formu.get('email')?.touched;};
   public get roleNoValid(){   return this.formu.get('role')?.invalid    && this.formu.get('role')?.touched;};
@@ -206,6 +221,7 @@ this.router.navigate(['/login'])
   getUsers(){
     this._sUser.getUsers()
     .pipe( finalize(()=>{
+      this.leerRole();
     }))
     .subscribe({
       next:(data)=>{

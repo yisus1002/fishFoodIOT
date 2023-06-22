@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit, AfterViewInit  {
     private router: Router,
     public _sctr: ControllerService,
     ){
+      this._sctr.leerRole()
   }
   ngAfterViewInit(): void {
     this._sctr.dataSource.paginator = this.paginator;

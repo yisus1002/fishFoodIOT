@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Record } from 'src/app/models/record-reponse';
 import { RecordService } from 'src/app/services/record.service';
+import { ControllerService } from '../../../../../../services/controllers/controller.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,11 @@ import { RecordService } from 'src/app/services/record.service';
 export class HomeComponent implements OnInit {
   panelOpenState = false;
   record:Record[]=[];
-  constructor(private _Srecord: RecordService){
+  constructor(
+    private _Srecord: RecordService,
+    private _Sctr: ControllerService
+    ){
+    this._Sctr.leerRole()
     this.getRecords()
   }
   ngOnInit(): void {
@@ -18,7 +23,9 @@ export class HomeComponent implements OnInit {
   }
 
   getRecords(){
-    this._Srecord.getrecord().subscribe({
+    this._Srecord.getrecord()
+    .pipe()
+    .subscribe({
       next: (data) => {
         this.record=data
         if(this.record.length > 10){
