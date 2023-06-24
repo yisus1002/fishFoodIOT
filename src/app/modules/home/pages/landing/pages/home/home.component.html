@@ -1,18 +1,19 @@
 <div class="container-fluid pt-2 px-0 control">
   <section class="container control__container">
       <div class="shadow rounded-4 mb-3 control__container__cont">
-        <h1  class="text-center bold pt-3 control__container__cont__title">Panel de control <strong>TimbreConnect</strong></h1>
-        <h2 style="font-size: 16px; " class="text-center m-0 pt-3">Programación del timbre de lunes a viernes</h2>
+        <h1  class="text-center bold pt-3 control__container__cont__title">Panel de control <strong>FishFoodIOT</strong></h1>
+        <app-capacity></app-capacity>
+        <!-- <h2 style="font-size: 16px; " class="text-center m-0 pt-3">Programación del timbre de lunes a viernes</h2> -->
         <div class="" *ngIf="loading!; else elseblock">
           <div
           class="d-flex  px-2 d-flex flex-wrap justify-content-between" style="align-items: center;">
             <div *ngIf="!editar" class="control__cont__btn">
-              <button mat-raised-button *ngIf="!activar" type="button" class="control__cont__btn__1 " (click)="tocarTimbre()" >
+              <!-- <button mat-raised-button *ngIf="!activar" type="button" class="control__cont__btn__1 " (click)="tocarTimbre()" >
                 Tocar timbre
-              </button>
-              <button mat-raised-button type="button" class="control__cont__btn__2 " (click)="cambiarEstado()">
-                <span *ngIf="!activar">Desactivar timbre</span>
-                <span *ngIf="activar">Activar timbre</span>
+              </button> -->
+              <button mat-raised-button type="button" class="control__cont__btn__2 " (click)="tocarTimbre()">
+                <!-- <span *ngIf="!activar">Desactivar timbre</span> -->
+                <span >Suministrar alimentación</span>
               </button>
             </div>
 
@@ -53,9 +54,9 @@
                 <table class="table table-bordered" >
                   <thead class="table-dark">
                     <tr>
-                        <th >Hora</th>
-                        <th >Tipo </th>
-                        <th >Sonara </th>
+                        <!-- <th >Hora</th> -->
+                        <!-- <th >Tipo </th> -->
+                        <th >Hora de alimentación</th>
                         <th >Opciones</th>
                       </tr>
                     </thead>
@@ -69,17 +70,17 @@
                             * Invalido
                             </mat-error>
                         </td>
-                        <td align="center" class="p-1">
-                          <mat-form-field  class="example-full-width" appearance="fill">
+                        <!-- <td align="center" class="p-1"> -->
+                          <!-- <mat-form-field  class="example-full-width" appearance="fill">
                             <mat-label>Seleccione un tipo</mat-label>
                             <mat-select style="position: relative;" formControlName="tipo" name="tipo">
                               <mat-option  z-index="1056" *ngFor="let timbre of tipo " [value]="timbre?.cod">
                                 {{timbre?.cod}}
                               </mat-option>
                             </mat-select>
-                          </mat-form-field>
-                        </td>
-                        <td align="center">
+                          </mat-form-field> -->
+                        <!-- </td> -->
+                        <!-- <td align="center">
                           <mat-form-field class="example-form-field" appearance="fill">
                             <mat-label>¿Cuántas veces sonará?</mat-label>
                             <mat-select style="position: relative;" formControlName="sonara" name="sonara">
@@ -89,7 +90,7 @@
                             </mat-select>
                           </mat-form-field>
 
-                        </td>
+                        </td> -->
                         <td class="p-1" align="center">
                           <button (click)="delHora(indexFormChildPrice)" type="button" mat-mini-fab class="btn__delete" ><mat-icon >delete</mat-icon></button>
                         </td>

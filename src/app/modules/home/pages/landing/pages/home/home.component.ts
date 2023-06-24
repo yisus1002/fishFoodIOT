@@ -25,18 +25,18 @@ export class HomeComponent implements OnInit {
   da:any[]=[];
   public horari!:Schedule[];
   public record!:Record;
-  public tipo:any[]=[
-    {cod:"Cambio de clase"},
-    {cod:"Entrada"},
-    {cod:"Salida"},
-    {cod:"Descanso"},
-  ];
+  // public tipo:any[]=[
+  //   {cod:"Cambio de clase"},
+  //   {cod:"Entrada"},
+  //   {cod:"Salida"},
+  //   {cod:"Descanso"},
+  // ];
 
-  public sonara:any[]=[
-    {cod: 1},
-    {cod: 2},
-    {cod: 3},
-  ];
+  // public sonara:any[]=[
+  //   {cod: 1},
+  //   {cod: 2},
+  //   {cod: 3},
+  // ];
 
   constructor(private _sHorario:TimbreService,
     private form     : FormBuilder,
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
     this.putHorario(1,{tocar: true});
     if(this.tocar){
 Swal.fire({
-  title: 'Tocando timbre!',
+  title: 'Suministrando alimentación!',
   icon: 'success',
    timer: 5000,
   heightAuto:true,
@@ -73,7 +73,7 @@ Swal.fire({
 
   }
   cambiarEstado(){
-    this.activar=!this.activar;
+    this.activar=true;
     this.putHorario(1, {activo: this.activar})
 
   }
@@ -140,6 +140,8 @@ Swal.fire({
     )
     .subscribe({
       next:(data)=>{
+        console.log(data);
+
         let fecha:Date = new Date();
 
         this.record={
@@ -179,8 +181,8 @@ Swal.fire({
     this.horario.push(
       this.form.group({
         start_time : ["", [Validators.required],[]],
-        tipo       : ["", [Validators.required],[]],
-        sonara     : ["", [Validators.required],[]],
+        // tipo       : ["", [Validators.required],[]],
+        // sonara     : ["", [Validators.required],[]],
       })
     )
   }

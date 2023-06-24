@@ -10,7 +10,7 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 const lang = 'en-US';
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent, 
   ],
   imports: [
     BrowserModule,

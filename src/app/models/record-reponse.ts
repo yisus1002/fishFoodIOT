@@ -8,7 +8,5 @@ export interface Record {
 }
 
 export interface Schedule {
-  sonara:     number;
   start_time: string;
-  tipo:       string;
 }
