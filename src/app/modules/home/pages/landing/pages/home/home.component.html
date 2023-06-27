@@ -55,8 +55,8 @@
                   <thead class="table-dark">
                     <tr>
                         <!-- <th >Hora</th> -->
-                        <!-- <th >Tipo </th> -->
                         <th >Hora de alimentación</th>
+                        <th >Tiempo de alimentación</th>
                         <th >Opciones</th>
                       </tr>
                     </thead>
@@ -70,16 +70,16 @@
                             * Invalido
                             </mat-error>
                         </td>
-                        <!-- <td align="center" class="p-1"> -->
-                          <!-- <mat-form-field  class="example-full-width" appearance="fill">
-                            <mat-label>Seleccione un tipo</mat-label>
+                        <td align="center" class="p-1">
+                          <mat-form-field  class="example-full-width" appearance="fill">
+                            <mat-label>Seleccione un tiempo</mat-label>
                             <mat-select style="position: relative;" formControlName="tipo" name="tipo">
                               <mat-option  z-index="1056" *ngFor="let timbre of tipo " [value]="timbre?.cod">
-                                {{timbre?.cod}}
+                                {{timbre?.cod}} s
                               </mat-option>
                             </mat-select>
-                          </mat-form-field> -->
-                        <!-- </td> -->
+                          </mat-form-field>
+                         </td>
                         <!-- <td align="center">
                           <mat-form-field class="example-form-field" appearance="fill">
                             <mat-label>¿Cuántas veces sonará?</mat-label>

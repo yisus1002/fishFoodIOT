@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { finalize } from 'rxjs';
+import { HcsrService } from 'src/app/services/hcsr.service';
 
 @Component({
   selector: 'app-capacity',
@@ -6,5 +8,39 @@ import { Component } from '@angular/core';
   styleUrls: ['./capacity.component.scss']
 })
 export class CapacityComponent {
+
+  d:number=30;
+  dist:number=0;
+  por:number=0;
+  x=100/this.d;
+
+  constructor(
+    private _Hcsr:HcsrService,
+  ){
+    this.getHcsr(1);
+    setInterval(()=>{
+      this.getHcsr(1);
+    }, 5000);
+  }
+
+  getHcsr(id:number){
+    this._Hcsr.getHcsrId(1)
+    .pipe(finalize(()=>{
+      let a:number = this.x * this.dist;
+
+      this.por=Number((100- a).toFixed(2));
+
+
+    }))
+    .subscribe({
+      next: (data) => {
+        this.dist=data?.distance;
+        console.log(data)
+      },
+      error: (err) => {
+              console.log(err)
+      }
+    })
+  }
 
 }

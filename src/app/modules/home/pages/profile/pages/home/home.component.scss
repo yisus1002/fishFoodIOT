@@ -1,5 +1,10 @@
 @use '../../../../../../../assets/styles/variables';
 
+.Perfil{
+  background-color: variables.color(white);
+  border-radius: 20px;
+  padding: variables.$padding;
+}
 .user__data{
   font-size: 20px;
   color: variables.color(coffe);
@@ -18,10 +23,22 @@ h1 , h2 , h3 , h4 , h5 , h6{
 .cont__img{
   display: flex;
   justify-content: center;
+  align-items: center;
+  .p{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 .cont__btn{
  display: flex;
  gap: 4px;
+ .btn-d{
+  z-index: 1;
+  background-color: variables.color(coffe);
+  color: white;
+ }
 }
 .color{
   color: variables.color(yellow);

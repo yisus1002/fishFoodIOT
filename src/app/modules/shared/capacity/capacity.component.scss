@@ -25,6 +25,7 @@
   height: 200%;
   border-radius: 50%;
   background-image: conic-gradient(#9c27b0, #3f51b5 calc(var(--percentage, 0) / 2), #bbb 0);
+  animation: growProgressBar 3s 1 forwards;
   transition: transform .5s ease-in-out;
   z-index: 1;
   transform: rotate(270deg);
@@ -43,8 +44,17 @@
   left: 16px;
 }
 
-.half-arc span {
+.half-arc p {
+  margin: 5px;
+  font-weight: bold;
   color: #673ab7;
   z-index: 3;
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  align-items: center;
+}
+@keyframes growProgressBar {
+  0%, 33% { --percentage: 0; }
+  100% { --percentage: var(--value); }
 }

@@ -1,6 +1,10 @@
 <div class="container d-flex justify-content-center">
-  <div class="half-arc" style="--percentage:50%;">
-    <span class="label">50% de capacidad</span>
+  <div class="half-arc" [style]="'--percentage:'+por+'%'">
+    <p>
+      <span class="label">Alimento</span>
+      <span class="label">{{por}}% </span>
+      <span class="label">de capacidad</span>
+    </p>
   </div>
 
 </div>

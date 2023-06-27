@@ -4,16 +4,16 @@
       <thead class="table-dark">
         <tr >
             <th >Hora de alimentación</th>
-            <!-- <th >tipo</th> -->
+            <th >Tiempo de alimantación</th>
             <!-- <th >Sonará</th> -->
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of schedule">
             <td class="p-1 px-2">{{item?.start_time}}
-            <!-- </td> -->
-            <!-- <td class="p-1 px-2">{{item?.tipo}} -->
-            <!-- </td> -->
+            </td>
+            <td class="p-1 px-2">{{item?.tipo}} s
+            </td>
             <!-- <td>{{item?.sonara}}
               <span *ngIf="item.sonara===1" >vez</span>
               <span *ngIf="item.sonara>1" >veces</span>

@@ -25,12 +25,18 @@ export class HomeComponent implements OnInit {
   da:any[]=[];
   public horari!:Schedule[];
   public record!:Record;
-  // public tipo:any[]=[
-  //   {cod:"Cambio de clase"},
-  //   {cod:"Entrada"},
-  //   {cod:"Salida"},
-  //   {cod:"Descanso"},
-  // ];
+  public tipo:any[]=[
+    {cod:1},
+    {cod:2},
+    {cod:3},
+    {cod:4},
+    {cod:5},
+    {cod:6},
+    {cod:7},
+    {cod:8},
+    {cod:9},
+    {cod:10},
+  ];
 
   // public sonara:any[]=[
   //   {cod: 1},
@@ -181,8 +187,7 @@ Swal.fire({
     this.horario.push(
       this.form.group({
         start_time : ["", [Validators.required],[]],
-        // tipo       : ["", [Validators.required],[]],
-        // sonara     : ["", [Validators.required],[]],
+        tipo       : ["", [Validators.required],[]],
       })
     )
   }
@@ -202,8 +207,7 @@ Swal.fire({
     this.horari.forEach((hora: any) => {
       const horaForm = this.form.group({
         start_time: new FormControl(hora?.start_time),
-        tipo: new FormControl(hora?.tipo),
-        sonara: new FormControl(hora?.sonara),
+        tipo: new FormControl(hora?.tipo)
       },{
       });
       this.horario.push(horaForm);

@@ -9,4 +9,5 @@ export interface Record {
 
 export interface Schedule {
   start_time: string;
+  tipo:number;
 }
