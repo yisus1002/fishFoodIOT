@@ -71,14 +71,18 @@
                             </mat-error>
                         </td>
                         <td align="center" class="p-1">
-                          <mat-form-field  class="example-full-width" appearance="fill">
+                          <mat-form-field>
+                            <mat-label>Ingrese el tiempo en segundos</mat-label>
+                            <input type="number" min="1" matInput formControlName="tipo" name="tipo">
+                          </mat-form-field>
+                          <!-- <mat-form-field  class="example-full-width" appearance="fill">
                             <mat-label>Seleccione un tiempo</mat-label>
                             <mat-select style="position: relative;" formControlName="tipo" name="tipo">
                               <mat-option  z-index="1056" *ngFor="let timbre of tipo " [value]="timbre?.cod">
                                 {{timbre?.cod}} s
                               </mat-option>
                             </mat-select>
-                          </mat-form-field>
+                          </mat-form-field> -->
                          </td>
                         <!-- <td align="center">
                           <mat-form-field class="example-form-field" appearance="fill">
