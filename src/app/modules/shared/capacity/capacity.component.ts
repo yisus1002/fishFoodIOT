@@ -31,8 +31,12 @@ export class CapacityComponent {
       let a:number = this.x * this.dist;
 
       this.por=Number((100- a).toFixed(2));
+      console.log(this.por);
       if(this.por===0){
         this.openSnackBar()
+      }
+      if(this.por<0){
+        this.por=0;
       }
 
     }))
