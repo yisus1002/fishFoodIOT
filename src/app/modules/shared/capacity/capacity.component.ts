@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize } from 'rxjs';
 import { HcsrService } from 'src/app/services/hcsr.service';
 
@@ -16,6 +17,7 @@ export class CapacityComponent {
 
   constructor(
     private _Hcsr:HcsrService,
+    private _snackBar: MatSnackBar
   ){
     this.getHcsr(1);
     setInterval(()=>{
@@ -29,7 +31,9 @@ export class CapacityComponent {
       let a:number = this.x * this.dist;
 
       this.por=Number((100- a).toFixed(2));
-
+      if(this.por===0){
+        this.openSnackBar()
+      }
 
     }))
     .subscribe({
@@ -42,5 +46,13 @@ export class CapacityComponent {
       }
     })
   }
+  openSnackBar() {
+    let message:string= 'El contenedor esta vacio';
+    let action:string= 'X';
+  this._snackBar.open(message, action, {
+    horizontalPosition: 'center',
+    verticalPosition: 'top',
+  });
+}
 
 }
