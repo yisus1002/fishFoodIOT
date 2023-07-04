@@ -32,12 +32,13 @@ export class CapacityComponent {
 
       this.por=Number((100- a).toFixed(2));
       console.log(this.por);
-      if(this.por===0){
-        this.openSnackBar()
-      }
       if(this.por<0){
         this.por=0;
       }
+      if(this.por===0){
+        this.openSnackBar()
+      }
+
 
     }))
     .subscribe({
