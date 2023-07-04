@@ -9,7 +9,7 @@ import { HcsrService } from 'src/app/services/hcsr.service';
 })
 export class CapacityComponent {
 
-  d:number=30;
+  d:number=37;
   dist:number=0;
   por:number=0;
   x=100/this.d;
